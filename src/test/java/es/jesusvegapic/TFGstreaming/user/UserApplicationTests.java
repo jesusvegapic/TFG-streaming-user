@@ -1,4 +1,4 @@
-package com.jesusvegapic.TFGstreaming.user;
+package es.jesusvegapic.TFGstreaming.user;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
