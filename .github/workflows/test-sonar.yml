@@ -28,6 +28,7 @@ jobs:
         run: >
           mvn -B verify -DskipTests sonar:sonar
           -Dsonar.projectKey=jesusvegapic_TFG-streaming-user
+          -Dsonar.organization=jesusvegapic
           -Dsonar.host.url=https://sonarcloud.io
           -Dsonar.login=$SONAR_TOKEN
         env:
