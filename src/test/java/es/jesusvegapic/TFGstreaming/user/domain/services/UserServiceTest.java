@@ -39,7 +39,7 @@ public class UserServiceTest {
 
     @Test
     void testCreateUserSuccessfully() {
-        User user = User.builder().email("prueba1@gmail.com").name("Aquiles").lastName("prueba")
+        User user = User.builder().email("prueba@gmail.com").name("Aquiles").lastName("prueba")
                 .address("Prueba").city("prueba").province("prueba").postalCode("prueba")
                 .passwd("7").bankAccount("prueba").role(Role.ADMIN).registrationDate(LocalDateTime.now())
                 .active(true).build();

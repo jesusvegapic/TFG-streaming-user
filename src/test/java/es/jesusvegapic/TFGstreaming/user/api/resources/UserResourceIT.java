@@ -92,7 +92,7 @@ public class UserResourceIT {
                 .uri(uriBuilder -> uriBuilder
                         .path(USERS + CLIENTS)
                         .build())
-                .body(Mono.just(UserDto.builder().email("prueba@gmail.com").name("k").familyName("prueba")
+                .body(Mono.just(UserDto.builder().email("prueba2@gmail.com").name("k").familyName("prueba")
                         .address("Prueba").city("prueba").province("prueba").postalCode("33213")
                         .passwd("7").bankAccount("prueba").role(Role.CLIENT).registrationDate(LocalDateTime.now())
                         .active(true).build()), UserDto.class)
