@@ -30,7 +30,7 @@ public class JwtService {
     }
 
     public String extractToken(String bearer) {
-        if(bearer != null && bearer.startsWith(BEARER) && 3 == BEARER.split("\\.").length) {
+        if(bearer != null && bearer.startsWith(BEARER) && 3 == bearer.split("\\.").length) {
             return bearer.substring(BEARER.length());
         } else {
             return "";
