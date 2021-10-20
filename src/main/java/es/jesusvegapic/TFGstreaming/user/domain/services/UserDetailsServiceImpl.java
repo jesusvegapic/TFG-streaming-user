@@ -29,7 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(final String email) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("email not found." + email));
         return this.userBuilder(user.getEmail(), user.getPasswd(), new Role[]{Role.AUTHENTICATED}, user.isActive());

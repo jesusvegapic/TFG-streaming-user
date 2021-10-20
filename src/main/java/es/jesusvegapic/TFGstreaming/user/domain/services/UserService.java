@@ -15,8 +15,8 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
-    private JwtService jwtService;
+    private final UserRepository userRepository;
+    private final JwtService jwtService;
 
     @Autowired
     public UserService(UserRepository userRepository, JwtService jwtService) {
