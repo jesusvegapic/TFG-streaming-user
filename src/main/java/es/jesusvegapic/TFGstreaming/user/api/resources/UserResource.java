@@ -3,6 +3,7 @@ package es.jesusvegapic.TFGstreaming.user.api.resources;
 import es.jesusvegapic.TFGstreaming.user.api.dtos.TokenDto;
 import es.jesusvegapic.TFGstreaming.user.api.dtos.UserDto;
 import es.jesusvegapic.TFGstreaming.user.data.model.Role;
+import es.jesusvegapic.TFGstreaming.user.domain.exceptions.BadRequestException;
 import es.jesusvegapic.TFGstreaming.user.domain.services.JwtService;
 import es.jesusvegapic.TFGstreaming.user.domain.services.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -59,6 +60,8 @@ public class UserResource {
     public void registerUser(@Valid @RequestBody UserDto creationUserDto) {
         if(creationUserDto.getRole().equals(Role.CLIENT)) {
             this.userService.createUser(creationUserDto.toUser(), Role.CLIENT);
+        } else {
+            throw new BadRequestException("No se pueden registrar usuarios que no sean clientes.");
         }
     }
 

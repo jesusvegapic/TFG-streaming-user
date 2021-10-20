@@ -3,7 +3,6 @@ package es.jesusvegapic.TFGstreaming.user.api.dtos;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import es.jesusvegapic.TFGstreaming.user.data.model.Role;
 import es.jesusvegapic.TFGstreaming.user.data.model.User;
-import es.jesusvegapic.TFGstreaming.user.domain.exceptions.BadRequestException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,9 +21,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDto {
+
     @NotNull
     @NotBlank
-    //@Pattern(regex = Validations)
     private String email;
 
     @NotNull
@@ -51,6 +50,11 @@ public class UserDto {
 
     private LocalDateTime registrationDate;
 
+    public UserDto(User user) {
+        BeanUtils.copyProperties(user, this);
+        this.passwd = "secret";
+    }
+
     public static UserDto ofUser(User user) {
         return UserDto.builder()
                 .email(user.getEmail())
@@ -70,12 +74,8 @@ public class UserDto {
 
     public User toUser() {
         this.passwd = new BCryptPasswordEncoder().encode(this.passwd);
-        try {
             User user = new User();
             BeanUtils.copyProperties(this, user);
             return user;
-        } catch(Exception e) {
-            throw new BadRequestException("Es necesario rellenar todos los campos del usuario");
-        }
     }
 }

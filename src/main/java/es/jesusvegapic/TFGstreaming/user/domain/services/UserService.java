@@ -3,6 +3,7 @@ package es.jesusvegapic.TFGstreaming.user.domain.services;
 import es.jesusvegapic.TFGstreaming.user.data.daos.UserRepository;
 import es.jesusvegapic.TFGstreaming.user.data.model.Role;
 import es.jesusvegapic.TFGstreaming.user.data.model.User;
+import es.jesusvegapic.TFGstreaming.user.domain.exceptions.BadRequestException;
 import es.jesusvegapic.TFGstreaming.user.domain.exceptions.ConflictException;
 import es.jesusvegapic.TFGstreaming.user.domain.exceptions.ForbiddenException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,8 @@ public class UserService {
         }
         this.noExistByEmail(user.getEmail());
         user.setRegistrationDate(LocalDateTime.now());
-        this.userRepository.save(user);
+
+            this.userRepository.save(user);
     }
 
     private List<Role> authorizedRoles(Role roleClaim) {

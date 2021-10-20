@@ -79,9 +79,11 @@ public class UserResourceIT {
                 .post().uri(USERS)
                 .body(Mono.just(UserDto.builder().name("k").familyName("prueba")
                         .address("Prueba").city("prueba").province("prueba").postalCode("33213")
-                        .passwd("7").bankAccount("prueba").role(Role.ADMIN).registrationDate(LocalDateTime.now())
+                        .passwd("7").bankAccount("prueba").role(Role.CLIENT).registrationDate(LocalDateTime.now())
                         .active(true).build()), UserDto.class)
-                .exchange().expectStatus().isEqualTo(HttpStatus.BAD_REQUEST);
+                .exchange()
+                .expectStatus()
+                .isEqualTo(HttpStatus.BAD_REQUEST);
 
     }
 
