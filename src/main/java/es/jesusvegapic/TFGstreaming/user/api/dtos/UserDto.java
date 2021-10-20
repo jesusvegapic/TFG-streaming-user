@@ -3,6 +3,7 @@ package es.jesusvegapic.TFGstreaming.user.api.dtos;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import es.jesusvegapic.TFGstreaming.user.data.model.Role;
 import es.jesusvegapic.TFGstreaming.user.data.model.User;
+import es.jesusvegapic.TFGstreaming.user.domain.exceptions.BadRequestException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,8 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.Objects;
-import java.util.UUID;
+
 
 @Data
 @NoArgsConstructor
@@ -24,7 +24,7 @@ import java.util.UUID;
 public class UserDto {
     @NotNull
     @NotBlank
-    //@Pattern(regex = Validations.ONE_DIGIT)
+    //@Pattern(regex = Validations)
     private String email;
 
     @NotNull
@@ -70,8 +70,12 @@ public class UserDto {
 
     public User toUser() {
         this.passwd = new BCryptPasswordEncoder().encode(this.passwd);
-        User user = new User();
-        BeanUtils.copyProperties(this, user);
-        return user;
+        try {
+            User user = new User();
+            BeanUtils.copyProperties(this, user);
+            return user;
+        } catch(Exception e) {
+            throw new BadRequestException("Es necesario rellenar todos los campos del usuario");
+        }
     }
 }
