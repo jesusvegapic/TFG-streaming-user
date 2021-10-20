@@ -24,4 +24,15 @@ public class JwtServiceIT {
         assertEquals("t.t.t", jwtService.extractToken("Bearer t.t.t"));
     }
 
+    @Test
+    void testCreateTokenAndVerify() {
+        String token = jwtService.createToken("user-id", "name", "ROLE");
+        assertEquals(3, token.split("\\.").length);
+        assertTrue(token.length() > 30);
+        assertEquals("user-id", jwtService.user(token));
+        assertEquals("name", jwtService.name(token));
+        assertEquals("ROLE", jwtService.role(token));
+
+    }
+
 }
