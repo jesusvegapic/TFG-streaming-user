@@ -48,11 +48,14 @@ public class User {
     @NonNull
     private String bankAccount;
 
+    @NonNull
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @NonNull
     private LocalDateTime registrationDate;
 
+    @NonNull
     private boolean active;
 
 }

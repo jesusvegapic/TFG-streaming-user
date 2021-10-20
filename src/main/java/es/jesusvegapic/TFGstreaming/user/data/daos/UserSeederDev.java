@@ -11,11 +11,11 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-@Repository @Profile("dev")
+@Repository // @Profile("dev")
 public class UserSeederDev {
 
-    private DatabaseStarting databaseStarting;
-    private UserRepository userRepository;
+    private final DatabaseStarting databaseStarting;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserSeederDev(UserRepository userRepository, DatabaseStarting databaseStarting) {
@@ -26,6 +26,7 @@ public class UserSeederDev {
 
     public void deleteAllAndInitializeAndSeedDataBase() {
         this.deleteAllAndInitialize();
+        this.seedDataBase();
 
     }
 
@@ -50,22 +51,22 @@ public class UserSeederDev {
                         .bankAccount("xxxx-xxxx-xxxx-xxxx").role(Role.MOD).registrationDate(LocalDateTime.now())
                         .active(true).build(),
 
-                User.builder().email("adm@gmail.com").name("c1").lastName("Torrelo").address("C/Streaming, 2")
+                User.builder().email("c1@gmail.com").name("c1").lastName("Torrelo").address("C/Streaming, 2")
                         .city("Barcelona").province("Barcelona").postalCode("08007").passwd(passwd)
                         .bankAccount("xxxx-xxxx-xxxx-xxxx").role(Role.CLIENT).registrationDate(LocalDateTime.now())
                         .active(true).build(),
 
-                User.builder().email("adm@gmail.com").name("c2").lastName("Fernandez").address("C/Streaming, 3")
+                User.builder().email("c2@gmail.com").name("c2").lastName("Fernandez").address("C/Streaming, 3")
                         .city("Barcelona").province("Barcelona").postalCode("08007").passwd(passwd)
                         .bankAccount("xxxx-xxxx-xxxx-xxxx").role(Role.CLIENT).registrationDate(LocalDateTime.now())
                         .active(true).build(),
 
-                User.builder().email("adm@gmail.com").name("c3").lastName("Sanchez").address("C/Streaming, 4")
+                User.builder().email("c3@gmail.com").name("c3").lastName("Sanchez").address("C/Streaming, 4")
                         .city("Barcelona").province("Barcelona").postalCode("08007").passwd(passwd)
                         .bankAccount("xxxx-xxxx-xxxx-xxxx").role(Role.CLIENT).registrationDate(LocalDateTime.now())
                         .active(true).build(),
 
-                User.builder().email("adm@gmail.com").name("client").lastName("Pomelo").address("C/Streaming, 5")
+                User.builder().email("c4@gmail.com").name("client").lastName("Pomelo").address("C/Streaming, 5")
                         .city("Barcelona").province("Barcelona").postalCode("08007").passwd(passwd)
                         .bankAccount("xxxx-xxxx-xxxx-xxxx").role(Role.CLIENT).registrationDate(LocalDateTime.now())
                         .active(true).build(),

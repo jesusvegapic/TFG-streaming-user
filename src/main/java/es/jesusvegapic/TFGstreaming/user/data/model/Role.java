@@ -1,7 +1,7 @@
 package es.jesusvegapic.TFGstreaming.user.data.model;
 
 public enum Role {
-    ADMIN, MOD, CLIENT;
+    ADMIN, MOD, CLIENT, AUTHENTICATED;
 
     public static final String PREFIX = "ROLE_";
 
