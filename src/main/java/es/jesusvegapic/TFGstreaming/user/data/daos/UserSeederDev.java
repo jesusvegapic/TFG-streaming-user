@@ -11,7 +11,8 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-@Repository // @Profile("dev")
+@Repository 
+@Profile("dev")
 public class UserSeederDev {
 
     private final DatabaseStarting databaseStarting;
