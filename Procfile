@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/TFG-streaming-user-0.0.1-Release.jar
