@@ -42,32 +42,32 @@ public class UserSeederDev {
         LogManager.getLogger(this.getClass()).warn("------- Initial Load from JAVA -------");
         String passwd = new BCryptPasswordEncoder().encode("7");
         User[] users = {
-                User.builder().email("adm@gmail.com").name("adm").lastName("Vega").address("C/Streaming, 0")
+                User.builder().email("adm@gmail.com").name("adm").familyName("Vega").address("C/Streaming, 0")
                         .city("Barcelona").province("Barcelona").postalCode("08007").passwd(passwd)
                         .bankAccount("xxxx-xxxx-xxxx-xxxx").role(Role.ADMIN).registrationDate(LocalDateTime.now())
                         .active(true).build(),
 
-                User.builder().email("mod@gmail.com").name("mod").lastName("Picon").address("C/Streaming, 1")
+                User.builder().email("mod@gmail.com").name("mod").familyName("Picon").address("C/Streaming, 1")
                         .city("Barcelona").province("Barcelona").postalCode("08007").passwd(passwd)
                         .bankAccount("xxxx-xxxx-xxxx-xxxx").role(Role.MOD).registrationDate(LocalDateTime.now())
                         .active(true).build(),
 
-                User.builder().email("c1@gmail.com").name("c1").lastName("Torrelo").address("C/Streaming, 2")
+                User.builder().email("c1@gmail.com").name("c1").familyName("Torrelo").address("C/Streaming, 2")
                         .city("Barcelona").province("Barcelona").postalCode("08007").passwd(passwd)
                         .bankAccount("xxxx-xxxx-xxxx-xxxx").role(Role.CLIENT).registrationDate(LocalDateTime.now())
                         .active(true).build(),
 
-                User.builder().email("c2@gmail.com").name("c2").lastName("Fernandez").address("C/Streaming, 3")
+                User.builder().email("c2@gmail.com").name("c2").familyName("Fernandez").address("C/Streaming, 3")
                         .city("Barcelona").province("Barcelona").postalCode("08007").passwd(passwd)
                         .bankAccount("xxxx-xxxx-xxxx-xxxx").role(Role.CLIENT).registrationDate(LocalDateTime.now())
                         .active(true).build(),
 
-                User.builder().email("c3@gmail.com").name("c3").lastName("Sanchez").address("C/Streaming, 4")
+                User.builder().email("c3@gmail.com").name("c3").familyName("Sanchez").address("C/Streaming, 4")
                         .city("Barcelona").province("Barcelona").postalCode("08007").passwd(passwd)
                         .bankAccount("xxxx-xxxx-xxxx-xxxx").role(Role.CLIENT).registrationDate(LocalDateTime.now())
                         .active(true).build(),
 
-                User.builder().email("c4@gmail.com").name("client").lastName("Pomelo").address("C/Streaming, 5")
+                User.builder().email("c4@gmail.com").name("client").familyName("Pomelo").address("C/Streaming, 5")
                         .city("Barcelona").province("Barcelona").postalCode("08007").passwd(passwd)
                         .bankAccount("xxxx-xxxx-xxxx-xxxx").role(Role.CLIENT).registrationDate(LocalDateTime.now())
                         .active(true).build(),

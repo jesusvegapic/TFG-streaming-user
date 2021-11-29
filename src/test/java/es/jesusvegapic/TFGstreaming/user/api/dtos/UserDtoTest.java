@@ -14,7 +14,7 @@ public class UserDtoTest {
     void testOfUser() {
         UserDto x = UserDto.ofUser(User.builder().email("prueba@gmail.com").role(Role.CLIENT).passwd("1")
                 .bankAccount("s").postalCode("3").city("dd").address("pa").province("gi").name("ju")
-                .lastName("ja").active(true).registrationDate(LocalDateTime.now()).build());
+                .familyName("ja").active(true).registrationDate(LocalDateTime.now()).build());
         assertEquals("prueba@gmail.com", x.getEmail());
         assertEquals("1", x.getPasswd());
     }
@@ -26,7 +26,7 @@ public class UserDtoTest {
                         .registrationDate(LocalDateTime.now()).role(Role.CLIENT).passwd("pi")
                 .active(true).build().toUser();
         assertNotNull(user.getRole());
-        assertTrue(user.isActive());
+        assertTrue(user.getActive());
     }
 
 

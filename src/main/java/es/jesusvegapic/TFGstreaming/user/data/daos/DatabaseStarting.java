@@ -27,7 +27,7 @@ public class DatabaseStarting {
     public void initialize() {
         LogManager.getLogger(this.getClass()).warn("------- Finding Admin -------");
         if(this.userRepository.findByRoleIn(List.of(Role.ADMIN)).isEmpty()) {
-            User user = User.builder().email("chusck@gmail.com").name(SUPER_USER).lastName("Vega").address("C/ Los Andes n5")
+            User user = User.builder().email("chusck@gmail.com").name(SUPER_USER).familyName("Vega").address("C/ Los Andes n5")
                     .city("Gijon").province("Asturias").postalCode("33213")
                     .passwd(new BCryptPasswordEncoder().encode(PASSWORD)).bankAccount("xxxx-xxxx-xxxx-xxxx")
                     .role(Role.ADMIN).registrationDate(LocalDateTime.now()).active(true).build();

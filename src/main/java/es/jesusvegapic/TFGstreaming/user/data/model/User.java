@@ -27,7 +27,7 @@ public class User {
     private String name;
 
     @NonNull
-    private String lastName;
+    private String familyName;
 
     @NonNull
     private String address;
@@ -52,10 +52,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @NonNull
+    
     private LocalDateTime registrationDate;
 
-    @NonNull
-    private boolean active;
+    
+    private Boolean active;
 
 }

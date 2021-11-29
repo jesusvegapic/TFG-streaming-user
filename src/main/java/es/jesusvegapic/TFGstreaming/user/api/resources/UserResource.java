@@ -13,11 +13,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -25,8 +23,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-// In profile prod select core and angular origins.
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+
 @PreAuthorize("hasRole('ADMIN') or hasRole('MOD')")
 @RestController
 @RequestMapping(UserResource.USERS)
@@ -49,8 +46,8 @@ public class UserResource {
     @PreAuthorize("authenticated")
     @PostMapping(value = TOKEN)
     public Optional<TokenDto> login(@AuthenticationPrincipal User activeUser) {
-       return userService.login(activeUser.getUsername())
-                .map(TokenDto::new);
+       if(activeUser != null) return userService.login(activeUser.getUsername()).map(TokenDto::new);
+       else throw new BadRequestException("Faltan campos en el login de usuario.");
     }
 
     @SecurityRequirement(name = "bearerAuth")
@@ -62,6 +59,7 @@ public class UserResource {
     @PreAuthorize("permitAll()")
     @PostMapping(value = CLIENTS)
     public void registerUser(@Valid @RequestBody UserDto creationUserDto) {
+       creationUserDto.doDefault();
         if(creationUserDto.getRole().equals(Role.CLIENT)) {
             this.userService.createUser(creationUserDto.toUser(), Role.CLIENT);
         } else {

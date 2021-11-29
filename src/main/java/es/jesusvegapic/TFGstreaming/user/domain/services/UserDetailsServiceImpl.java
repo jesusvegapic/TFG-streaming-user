@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(final String email) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("email not found." + email));
-        return this.userBuilder(user.getEmail(), user.getPasswd(), new Role[]{Role.AUTHENTICATED}, user.isActive());
+        return this.userBuilder(user.getEmail(), user.getPasswd(), new Role[]{Role.AUTHENTICATED}, user.getActive());
     }
 
     private org.springframework.security.core.userdetails.User userBuilder(String email, String password, Role[] roles,
