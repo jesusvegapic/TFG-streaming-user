@@ -26,6 +26,7 @@
 		<!-- Java -->
 		<java.version>11</java.version>
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+		<maven.compiler.target>11</maven.compiler.target>
 		<!-- Maven. integration test -->
 		<maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
 		<maven-failsafe-plugin.version>2.21.0</maven-failsafe-plugin.version>
