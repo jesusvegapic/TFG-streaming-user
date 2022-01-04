@@ -5,6 +5,7 @@ import es.jesusvegapic.TFGstreaming.user.data.model.Role;
 import es.jesusvegapic.TFGstreaming.user.data.model.User;
 import es.jesusvegapic.TFGstreaming.user.domain.exceptions.ConflictException;
 import es.jesusvegapic.TFGstreaming.user.domain.exceptions.ForbiddenException;
+import es.jesusvegapic.TFGstreaming.user.domain.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,4 +54,8 @@ public class UserService {
         }
     }
 
+    public User readByEmailAssured(String email) {
+        return this.userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("The mobile don't exist: " + email));
+    }
 }

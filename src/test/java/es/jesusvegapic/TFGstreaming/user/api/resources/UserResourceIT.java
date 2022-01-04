@@ -10,8 +10,8 @@ import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
 
-import static es.jesusvegapic.TFGstreaming.user.api.resources.UserResource.CLIENTS;
-import static es.jesusvegapic.TFGstreaming.user.api.resources.UserResource.USERS;
+import static es.jesusvegapic.TFGstreaming.user.api.resources.UserResource.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ApiTestConfig
@@ -99,6 +99,29 @@ public class UserResourceIT {
                         .passwd("7").bankAccount("prueba").role(Role.CLIENT).registrationDate(LocalDateTime.now())
                         .active(true).build()), UserDto.class)
                 .exchange().expectStatus().isOk();
+    }
+
+    @Test
+    void testReadUser() {
+        this.restClientTestService.loginAdmin(this.webTestClient)
+                .get().uri(USERS + EMAIL_ID, "c1@gmail.com")
+                .exchange().expectStatus().isOk()
+                .expectBody(UserDto.class)
+                .value(user -> assertEquals("Torrelo", user.getFamilyName()));
+    }
+
+    @Test
+    void testReadUserNotFound() {
+        this.restClientTestService.loginAdmin(this.webTestClient)
+                .get().uri(USERS + EMAIL_ID, "notexist@gmail.com")
+                .exchange().expectStatus().isNotFound();
+    }
+
+    @Test
+    void testReadUserForbidden() {
+        this.restClientTestService.loginClient(this.webTestClient)
+                .get().uri(USERS + EMAIL_ID, "c1@gmail.com")
+                .exchange().expectStatus().isUnauthorized();
     }
 
 }

@@ -13,10 +13,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -31,6 +28,7 @@ public class UserResource {
     public static final String USERS = "/users";
     public static final String CLIENTS = "/clients";
     public static final String TOKEN = "/token";
+    public static final String EMAIL_ID= "/{email}";
 
     private UserService userService;
     private JwtService jwtService;
@@ -67,7 +65,11 @@ public class UserResource {
         }
     }
 
-
+    @SecurityRequirement(name = "bearerAuth")
+    @GetMapping(EMAIL_ID)
+    public UserDto readUser(@PathVariable String email) {
+        return new UserDto(this.userService.readByEmailAssured(email));
+    }
 
     private Role extractRoleClaims() {
         List<String> roleClaims = SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
